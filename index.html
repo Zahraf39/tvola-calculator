@@ -1,0 +1,4832 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0, user-scalable=yes">
+
+<title>T-VOLA EXCHANGE</title>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#050505;
+padding:20px;
+color:white;
+}
+
+.light-mode{
+background:#f5f5f5 !important;
+color:#111 !important;
+}
+
+.light-mode .card,
+.light-mode .live,
+.light-mode .adminPage{
+background:#fafafa !important;
+color:black !important;
+}
+
+.light-mode #newAdminPanel{
+background:#f5f5f5 !important;
+color:#111 !important;
+}
+
+.light-mode #cryptoContainer{
+background:white !important;
+color:#111 !important;
+border:1px solid #ddd;
+}
+
+.light-mode #cryptoContainer h3{
+color:white !important;
+}
+
+.light-mode .feeRow span{
+color:#111 !important;
+}
+
+.light-mode .feeRow input{
+background:#f5f5f5 !important;
+color:#111 !important;
+border:1px solid #ddd;
+}
+
+.light-mode .box{
+background:#e8e8e8 !important;
+}
+
+.light-mode .facture{
+background:
+linear-gradient(
+145deg,
+#020202,
+#090909
+) !important;
+}
+
+.light-mode .transactionHeaderBox{
+border:2px solid rgba(255,255,255,.35) !important;
+background:rgba(255,255,255,.03) !important;
+}
+
+.light-mode .detailsContainer{
+border:2px solid rgba(255,255,255,.35) !important;
+background:rgba(255,255,255,.03) !important;
+}
+
+.light-mode .contactContainer{
+border:2px solid rgba(255,255,255,.35) !important;
+background:rgba(255,255,255,.03) !important;
+}
+
+.light-mode input{
+color:#111 !important;
+background:transparent !important;
+border:none !important;
+box-shadow:none !important;
+}
+
+.light-mode select{
+color:#111 !important;
+background:#f5f5f5 !important;
+border:none !important;
+}
+
+.light-mode #selectedCryptoText,
+.light-mode #selectedBaseText,
+.light-mode #selectedNetwork,
+.light-mode #networkList div{
+color:#111 !important;
+}
+
+.light-mode .row{
+background:transparent !important;
+}
+
+.light-mode .copyBtn{
+
+background:transparent !important;
+
+color:#4b5563 !important;
+
+}
+
+/* CADRE IVELANY */
+.light-mode .facture{
+border:2px solid #ffffff !important;
+}
+
+/* CADRE HEADER */
+.light-mode .transactionHeaderBox{
+border:1px solid #ffffff !important;
+}
+
+/* CADRE DETAILS */
+.light-mode .detailsContainer{
+border:1px solid #ffffff !important;
+}
+
+/* TYPE DE TRANSACTION */
+.light-mode .smallType{
+color:white !important;
+}
+
+/* DEPOT BCH / RETRAIT BCH */
+.light-mode .mainTransaction{
+color:white !important;
+}
+
+/* VALEURS */
+.light-mode .detailValue{
+color:white !important;
+}
+
+.light-mode .detailLabel{
+color:white !important;
+}
+
+.light-mode .invoiceSub{
+color:white !important;
+}
+
+.light-mode .contactText{
+color:white !important;
+}
+
+.light-mode .switch{
+background:#dddddd !important;
+}
+
+/* =========================
+LIGHT MODE DROPDOWNS
+========================= */
+
+/* Base Currency */
+
+.light-mode #baseCurrencySelector{
+background:#ffffff !important;
+color:#111 !important;
+border:1px solid #ddd !important;
+}
+
+/* CRYPTO SELECTOR */
+
+.light-mode #cryptoSelector{
+background:#ffffff !important;
+border:1px solid #ddd !important;
+}
+
+.light-mode #cryptoSelector span{
+color:#111 !important;
+}
+
+.light-mode #selectedCryptoText{
+color:#111 !important;
+}
+
+.light-mode #selectedBaseText{
+color:#111 !important;
+}
+
+.light-mode #baseCurrencyList{
+background:#ffffff !important;
+border:1px solid #ddd !important;
+}
+
+.light-mode .baseCurrencyItem{
+background:#ffffff !important;
+color:#111 !important;
+border:1px solid #eee !important;
+}
+
+.light-mode .baseCurrencyItem span{
+color:#111 !important;
+}
+
+.light-mode .baseCurrencyItem:hover{
+background:#f5f5f5 !important;
+}
+
+/* Crypto Popup */
+
+.light-mode .cryptoPopup{
+background:#ffffff !important;
+border:1px solid #ddd !important;
+}
+
+.light-mode .cryptoPopupItem{
+background:#ffffff !important;
+border-bottom:1px solid #eee !important;
+}
+
+.light-mode .cryptoPopupItem span{
+color:#111 !important;
+}
+
+body.light-mode .cryptoPopup{
+background:#ffffff !important;
+}
+
+body.light-mode .cryptoPopupItem{
+background:#ffffff !important;
+}
+
+body.light-mode .cryptoPopupItem span{
+color:#111 !important;
+}
+
+.light-mode .cryptoPopupItem:hover{
+background:#f5f5f5 !important;
+}
+
+/* Réseau Dropdown */
+
+.light-mode #networkList{
+background:#ffffff !important;
+border:1px solid #ddd !important;
+}
+
+.light-mode #networkList div{
+color:#111 !important;
+}
+
+.light-mode #networkList div:hover{
+background:#f5f5f5 !important;
+}
+
+.light-mode #selectedNetwork{
+color:#111 !important;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+}
+
+.logoTextTop{
+font-size:16px;
+font-weight:900;
+letter-spacing:2px;
+color:gold;
+text-shadow:
+0 0 5px gold,
+0 0 12px gold;
+}
+
+.topLogo{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.topLogo img{
+height:70px;
+max-width:220px;
+object-fit:contain;
+}
+
+.themeBtn{
+width:45px;
+height:45px;
+border:none;
+background:transparent;
+color:white;
+font-size:28px;
+cursor:pointer;
+
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.light-mode .themeBtn{
+color:#111 !important;
+}
+
+.centerLogo{
+text-align:center;
+margin-bottom:25px;
+}
+
+.centerLogo h1{
+font-size:56px;
+font-weight:900;
+letter-spacing:4px;
+color:#ffe066;
+text-shadow:
+0 0 10px gold,
+0 0 30px gold;
+}
+
+.centerLogo h2{
+font-size:18px;
+letter-spacing:8px;
+margin-top:-5px;
+}
+
+.switch{
+width:100%;
+max-width:220px;
+margin:auto;
+display:flex;
+background:#111;
+padding:5px;
+border-radius:40px;
+margin-bottom:10px;
+}
+
+.switch button{
+flex:1;
+padding:16px;
+border:none;
+border-radius:50px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+background:transparent;
+color:white;
+transition:0.3s;
+}
+
+.switch .active{
+background:gold;
+color:black;
+}
+
+.card{
+max-width:470px;
+margin:auto;
+background:#090909;
+padding:22px;
+border-radius:35px;
+box-shadow:
+0 0 20px rgba(255,215,0,0.08);
+}
+
+.title{
+font-size:28px;
+font-weight:bold;
+margin-bottom:25px;
+}
+
+.box{
+background:#111;
+padding:14px;
+border-radius:24px;
+margin-bottom:16px;
+}
+
+.row{
+display:flex;
+align-items:center;
+gap:8px;
+width:100%;
+}
+
+select{
+padding:12px 14px;
+border:none;
+border-radius:16px;
+font-size:15px;
+font-weight:bold;
+background:#1b1b1b;
+color:white;
+outline:none;
+min-width:92px;
+height:60px;
+}
+
+#networkSelect{
+background:transparent !important;
+border:none !important;
+height:auto !important;
+min-width:auto !important;
+padding:0 !important;
+font-size:6px !important;
+}
+
+input{
+flex:1;
+border:none;
+outline:none;
+background:transparent;
+font-size:18px;
+font-weight:bold;
+color:white;
+width:100%;
+min-width:0;
+}
+
+.walletTitle{
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+width:100%;
+
+font-size:14px;
+font-weight:700;
+color:#ffd700;
+margin-bottom:8px;
+}
+
+#walletTitleLeft{
+display:flex;
+align-items:center;
+gap:5px;
+}
+
+#walletTitleRight{
+display:flex;
+align-items:center;
+gap:5px;
+font-weight:800;
+color:white;
+}
+
+.light-mode #walletTitleLeft{
+color:black !important;
+}
+
+.light-mode #walletTitleRight{
+color:black !important;
+}
+
+body:not(.light-mode) #walletTitleLeft{
+color:white;
+}
+
+body:not(.light-mode) #walletTitleRight{
+color:white;
+}
+
+.walletIcon{
+width:18px;
+height:18px;
+vertical-align:middle;
+margin-right:4px;
+}
+
+body:not(.light-mode) .walletIcon{
+filter:invert(1);
+}
+
+.checkIcon{
+width:14px;
+height:14px;
+vertical-align:middle;
+margin-left:4px;
+}
+
+body:not(.light-mode) .checkIcon{
+filter:invert(1);
+}
+
+#walletContainer{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding:5px 0;
+margin-bottom:10px;
+
+scrollbar-width:none;
+-ms-overflow-style:none;
+}
+
+#walletContainer::-webkit-scrollbar{
+display:none;
+}
+
+.walletBtn{
+width:35px;
+height:35px;
+border-radius:10px;
+border:0.6px solid #333;
+background:#111;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+cursor:pointer;
+
+overflow:hidden;
+border-radius:10px;
+}
+
+.walletBtn.active{
+border:2px solid #48ff2a;
+box-shadow:
+0 0 6px #00ff88;;
+}
+
+.walletBtn img{
+width:100%;
+height:100%;
+
+object-fit:contain;
+}
+
+.copyBtn{
+
+width:42px;
+height:42px;
+
+background:transparent;
+
+border:none;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+cursor:pointer;
+
+color:#7b8794;
+
+transition:.2s;
+
+flex-shrink:0;
+
+}
+
+.copyBtn:hover{
+color:#a5b1bd;
+}
+
+.copyBtn:active{
+transform:scale(.90);
+}
+
+.copyBtn svg{
+width:24px;
+height:24px;
+stroke:currentColor;
+}
+
+.transferOptions{
+display:flex;
+align-items:center;
+gap:6px;
+margin-top:-8px;
+margin-bottom:8px;
+justify-content: center;
+}
+
+.transferBtn{
+background:#1a1a1a;
+color:white;
+border:none;
+border-radius:20px;
+padding:3px 7px;
+font-size:8px;
+cursor:pointer;
+}
+
+/* MODE CLAIR - Bouton tsy sélectionné */
+
+.light-mode .transferBtn{
+background:#dcdcdc !important;
+color:#333 !important;
+border:1px solid #cfcfcf !important;
+}
+
+.light-mode .transferBtn.active{
+background:#ffd700 !important;
+color:black !important;
+border:none !important;
+}
+
+.transferBtn.active{
+background:#ffd700;
+color:black;
+font-weight:bold;
+}
+
+.networkSelect{
+display:none;
+background:#1a1a1a;
+color:white;
+border:none;
+border-radius:20px;
+
+height:28px;
+min-width:70px;
+
+padding:2px 8px;
+
+font-size:8px;
+font-weight:bold;
+
+outline:none;
+}
+
+#networkDropdown{
+position:relative;
+display:none;
+align-items:center;
+gap:2px;
+width:auto;
+}
+
+#selectedNetwork{
+color:white;
+font-size:9px;
+font-weight:bold;
+cursor:pointer;
+padding:0;
+background:transparent;
+border:none;
+min-width:auto;
+display:inline-flex;
+align-items:center;
+gap:3px;
+}
+
+#networkList{
+display:none;
+position:absolute;
+top:35px;
+right:0;
+
+background:#111;
+
+border:1.5px solid rgba(255,255,255,.08);
+
+border-radius:9px;
+
+padding:4px;
+
+min-width:100px;
+
+z-index:999;
+
+box-shadow:
+0 0 20px rgba(0,0,0,.5);
+}
+
+#networkList div{
+padding:8px;
+font-size:11px;
+color:white;
+cursor:pointer;
+border-radius:8px;
+}
+
+#networkList div:hover{
+background:#222;
+}
+
+#baseCurrencySelector{
+height:60px;
+width:90px;
+
+display:flex;
+align-items:center;
+gap: 8px;
+
+background:#1a1a1a;
+
+padding:12px;
+
+border-radius:16px;
+
+cursor:pointer;
+
+}
+
+#selectedBaseText{
+font-size:14px;
+font-weight:600;
+}
+
+.baseArrow{
+margin-left:auto;
+font-size:10px;
+opacity:.8;
+}
+
+#baseCurrencySelector img{
+
+width:15px;
+height:15px;
+
+}
+
+#baseCurrencyList{
+
+display:none;
+
+position:absolute;
+
+background:#111;
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:12px;
+
+padding:6px;
+
+margin-top:5px;
+
+z-index:9999;
+
+}
+
+.baseCurrencyItem{
+display:flex;
+align-items:center;
+gap:12px;
+
+padding:12px;
+
+border-radius:12px;
+
+cursor:pointer;
+
+border:1px solid rgba(255,255,255,.08);
+
+background:rgba(255,255,255,.02);
+
+transition:.2s;
+}
+
+.baseCurrencyItem:hover{
+background:#1a1a1a;
+border-color:rgba(255,215,0,.25);
+}
+
+.baseCurrencyItem img{
+
+width:24px;
+height:24px;
+
+}
+
+.swapCircle{
+width:30px;
+height:30px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:linear-gradient(
+180deg,
+#1b1b1b,
+#0f0f0f
+);
+
+border:1px solid rgba(255,215,0,.25);
+
+color:#ffd700;
+
+font-size:18px;
+font-weight:bold;
+
+box-shadow:
+0 0 8px rgba(255,215,0,.05);
+}
+
+.baseCurrencyDivider{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:10px 0;
+}
+
+.rate{
+text-align:center;
+font-size:14px;
+font-weight:400;
+margin:15px 0;
+}
+
+.fees{
+display:flex;
+justify-content:space-between;
+font-size:18px;
+font-weight:bold;
+margin-top:10px;
+gap:10px;
+}
+
+.calcBtn{
+width:100%;
+padding:18px;
+margin-top:25px;
+border:none;
+border-radius:22px;
+font-size:22px;
+font-weight:bold;
+background:gold;
+color:black;
+cursor:pointer;
+}
+
+.adminBtn{
+width:100%;
+padding:18px;
+margin-top:20px;
+border:none;
+border-radius:22px;
+font-size:20px;
+font-weight:bold;
+background:gold;
+color:black;
+cursor:pointer;
+}
+
+.btnIcon{
+width:18px;
+height:18px;
+vertical-align:middle;
+margin-right:8px;
+}
+
+.ussdBox{
+
+margin-top:20px;
+margin-bottom:20px;
+
+}
+
+.ussdTop{
+
+display:flex;
+align-items:center;
+gap:10px;
+
+}
+
+.ussdLabel{
+
+font-size:18px;
+font-weight:700;
+
+color:white;
+
+}
+
+#mobileNumber{
+
+width:190px;
+
+height:46px;
+
+background:#0f0f0f;
+
+border:1px solid
+rgba(255,255,255,.18);
+
+border-radius:24px;
+
+padding:0 16px;
+
+font-size:16px;
+
+color:white;
+
+}
+
+.pasteBtn{
+
+width:35px;
+height:35px;
+
+border:none;
+background:transparent;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+cursor:pointer;
+
+color:#7b8794;
+
+transition:.2s;
+
+}
+
+.pasteBtn svg{
+
+width:28px;
+height:28px;
+
+}
+
+.pasteBtn:active{
+
+transform:scale(.92);
+
+}
+
+.pasteBtn:hover{
+
+color:#a5b1bd;
+
+}
+
+.ussdBottom{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+gap:10px;
+
+margin-top:4px;
+
+}
+
+.ussdCode{
+
+flex:1;
+
+font-size:18px;
+
+color:white;
+
+word-break:break-all;
+
+}
+
+.callBtn{
+
+width:30px;
+height:30px;
+
+border-radius:50%;
+
+background:#00d84a;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:18px;
+
+text-decoration:none;
+
+}
+
+/* =========================
+FACTURE PREMIUM
+========================= */
+
+.facture{
+position:relative;
+overflow:hidden;
+margin-top:16px;
+padding:12px;
+border-radius:18px;
+background:
+linear-gradient(
+145deg,
+#020202,
+#090909
+);
+border:1px solid #f7c948;
+box-shadow:
+0 0 30px rgba(255,215,0,0.15);
+
+width:100%;
+aspect-ratio:1/1;
+
+display:flex;
+flex-direction:column;
+}
+
+/* =========================
+BACKGROUND
+========================= */
+
+.factureGlowTop{
+position:absolute;
+
+top:-120px;
+left:-120px;
+
+width:260px;
+height:260px;
+
+background:
+radial-gradient(
+circle,
+rgba(255,215,0,0.18),
+transparent 70%
+);
+}
+
+.factureGlowBottom{
+position:absolute;
+
+bottom:-120px;
+right:-120px;
+
+width:260px;
+height:260px;
+
+background:
+radial-gradient(
+circle,
+rgba(255,215,0,0.15),
+transparent 70%
+);
+}
+
+.mapBackground{
+position:absolute;
+inset:0;
+
+background-image:url("images/map-bg.png");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+opacity:0.85;
+
+pointer-events:none;
+z-index:0;
+}
+
+/* =========================
+TITLE
+========================= */
+
+.invoiceTitle{
+position:relative;
+z-index:2;
+
+text-align:center;
+
+font-size:20px;
+
+font-weight:900;
+
+line-height:1;
+
+color:#ffd700;
+
+margin-top:2px;
+}
+
+.light-mode .invoiceTitle{
+color:white !important;
+}
+
+.invoiceSub{
+position:relative;
+z-index:2;
+
+text-align:center;
+
+font-size:6px;
+
+letter-spacing:2px;
+
+margin-top:2px;
+
+opacity:0.8;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.transactionHeaderBox{
+position:relative;
+z-index:2;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:14px;
+
+/* MITOVY AMIN CONTACT */
+
+height:75px;
+
+margin-top:8px;
+
+border-radius:10px;
+
+border:1px solid rgba(255,215,0,0.28);
+
+background:
+rgba(255,215,0,0.03);
+}
+
+.transactionLeft{
+display:flex;
+align-items:center;
+gap:10px;
+flex:1;
+}
+
+.transactionText{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+
+width:60%;
+}
+
+.logoMini{
+
+width:65px;
+height:65px;
+
+object-fit:contain;
+
+border:none;
+padding:0;
+background:none;
+
+filter:
+drop-shadow(0 0 2px rgba(255,255,255,.2));
+}
+
+.smallType{
+font-size:7px;
+color:#ffd700;
+margin-bottom:2px;
+text-align:center
+}
+
+.mainTransaction{
+font-size:18px;
+font-weight:900;
+line-height:1;
+text-align:center;
+}
+
+#factureWalletInfo{
+
+display:none;
+justify-content:center;
+align-items:center;
+gap:3px;
+
+margin-top:3px;
+
+font-size:11px;
+font-weight:700;
+color:white;
+}
+
+#factureWalletIcon{
+
+width:11px;
+height:11px;
+
+margin-right:1px;
+
+vertical-align:middle;
+
+/* ESORY IRETO */
+position:static;
+top:auto;
+}
+
+.factureWalletBag{
+
+color:#00ff66;
+
+font-size:12px;
+
+}
+
+.cryptoCircle{
+
+width:54px;
+height:54px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:none;
+border:none;
+}
+
+#cryptoLogoFacture{
+
+width:48px;
+height:48px;
+object-fit:contain;
+
+filter:
+drop-shadow(0 0 5px rgba(255,255,255,.5));
+}
+
+/* =========================
+DETAILS
+========================= */
+
+.detailsContainer{
+position:relative;
+z-index:2;
+
+margin-top:8px;
+
+padding:12px;
+
+border-radius:10px;
+
+border:1px solid rgba(255,215,0,0.28);
+
+background:
+rgba(255,215,0,0.03);
+
+flex:1;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.detailItem{
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:8px 0;
+
+border-bottom:
+1px dashed rgba(255,255,255,0.12);
+}
+
+.detailItem:last-child{
+border-bottom:none;
+}
+
+.detailLabel{
+font-size:9px;
+}
+
+.detailValue{
+font-size:11px;
+font-weight:900;
+color:#ffd700;
+text-align:right;
+}
+
+.light-mode .detailValue{
+color:#ffff !important;
+}
+
+.factureWallets{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:8px;
+
+margin-top:8px;
+margin-bottom:4px;
+
+opacity:1;
+z-index:10;
+position:relative;
+}
+
+.factureWalletItem{
+width:24px;
+height:24px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:#111;
+border-radius:6px;
+
+overflow:hidden;
+position:relative;
+
+flex-shrink:0;
+}
+
+.factureWalletItem img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+.factureWalletItem.active{
+border:1.2px solid #39ff14;
+box-shadow:0 0 8px #39ff14;
+}
+
+.factureWalletItem img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+.factureWalletsWrapper{
+display:flex;
+
+align-items:center;
+justify-content:space-between;
+
+width:100%;
+
+padding:0 10px;
+
+margin-top:2px;
+margin-bottom:2px;
+}
+
+.walletArrow{
+font-size:25px;
+font-weight:700;
+
+color:#ffffff;
+
+opacity:.85;
+
+white-space:nowrap;
+}
+
+.factureWalletItem.active::after{
+content:"✓";
+
+position:absolute;
+
+top:-1px;
+right:-1px;
+
+width:10px;
+height:10px;
+
+background:#00ff66;
+color:#000;
+
+font-size:8px;
+font-weight:300;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border:0.5px solid #fff;
+
+box-shadow:0 0 1px #00ff66;
+
+z-index:999;
+}
+
+/* =========================
+CONTACTS
+========================= */
+
+.contactContainer{
+position:relative;
+z-index:2;
+
+margin-top:4px;
+
+padding:14px;
+
+/* MITOVY AMIN HEADER */
+
+height:88px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:4px;
+
+border-radius:10px;
+
+border:1px solid rgba(255,215,0,0.28);
+
+background:
+rgba(255,215,0,0.03);
+}
+
+.light-mode .contactContainer{
+
+height:72px !important;
+
+padding:8px !important;
+
+border: 1px solid #ffffff
+
+!important;
+
+}
+
+.contactBox{
+text-align:center;
+flex:1;
+}
+
+.socialIcon{
+
+width:16px;
+height:16px;
+
+object-fit:contain;
+
+margin-bottom:3px;
+}
+
+.contactText{
+font-size:5px;
+font-weight:bold;
+line-height:1.1;
+word-break:break-word;
+}
+
+/* =========================
+DOWNLOAD BUTTON
+========================= */
+
+.downloadBtn{
+
+width:100%;
+
+padding:18px;
+
+margin-top:20px;
+
+border:none;
+
+border-radius:22px;
+
+font-size:20px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+background:#00d26a;
+
+color:white;
+}
+
+.btnIconWhite{
+width:24px;
+height:24px;
+vertical-align:middle;
+margin-right:8px;
+
+filter: brightness(0) invert(1);
+}
+
+
+
+.live{
+margin-top:25px;
+padding:20px;
+border-radius:25px;
+background:#111;
+}
+
+.live h3{
+margin-bottom:18px;
+font-size:22px;
+}
+
+.liveItem{
+display:flex;
+justify-content:space-between;
+padding:12px 0;
+border-bottom:1px solid #222;
+font-size:18px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.green{
+color:#00ff88;
+}
+
+.red{
+color:#ff4d4d;
+}
+
+.adminPage{
+display:none;
+max-width:470px;
+margin:auto;
+background:#111;
+padding:20px;
+border-radius:35px;
+margin-top:20px;
+position:relative;
+z-index:1000;
+}
+
+.adminPage h2{
+margin-bottom:15px;
+}
+
+.adminPage label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+}
+
+.adminPage input{
+background:#1a1a1a;
+padding:14px;
+border-radius:15px;
+font-size:20px;
+margin-top:5px;
+width:100%;
+color:white;
+}
+
+.tip{
+margin-top:15px;
+padding:15px;
+background:#1a1a1a;
+border-radius:18px;
+font-size:15px;
+line-height:1.6;
+color:#ddd;
+}
+
+#newAdminPanel{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#050505;
+z-index:99999;
+overflow-y:auto;
+padding:20px;
+}
+
+.newAdminHeader{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:24px;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.newAdminHeader div:last-child{
+cursor:pointer;
+font-size:30px;
+}
+
+.newAdminInfo{
+background:#0d2a5f;
+padding:15px;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+.cryptoSearch{
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+background:#111;
+color:white;
+margin-bottom:20px;
+}
+
+#cryptoContainer{
+background:#111;
+padding:20px;
+border-radius:20px;
+line-height:1.8;
+color:white;
+}
+
+#cryptoContainer h3{
+color:#ffd700;
+}
+
+#cryptoContainer span{
+color:white;
+}
+
+#cryptoContainer input{
+color:white;
+background:#1a1a1a;
+}
+
+.saveAllBtn{
+width:100%;
+height:55px;
+margin-top:20px;
+border:none;
+border-radius:15px;
+background:#00b050;
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.feeRow{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:10px 0;
+gap:10px;
+}
+
+.feeRow span{
+font-size:15px;
+font-weight:bold;
+}
+
+.feeRow input{
+width:90px;
+background:#1a1a1a;
+border:none;
+color:white;
+padding:8px;
+border-radius:10px;
+text-align:center;
+}
+
+/* ==========================
+CRYPTO DROPDOWN SIMPLE V3
+========================== */
+
+.cryptoPopup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+
+width:92%;
+max-width:650px;
+
+max-height:500px;
+overflow-y:auto;
+
+overscroll-behavior:contain;
+touch-action:pan-y;
+
+background:#111;
+
+border:1px solid rgba(255,255,255,.08);
+border-radius:10px;
+
+display:none;
+z-index:99999;
+
+box-shadow:
+0 0 25px rgba(0,0,0,.7),
+0 0 50px rgba(255,215,0,.05);
+}
+
+.cryptoPopup{
+scrollbar-width:none;
+}
+
+.cryptoPopup::-webkit-scrollbar{
+width:1px;
+}
+
+.cryptoPopup::-webkit-scrollbar-track{
+background:transparent;
+}
+
+.cryptoPopup::-webkit-scrollbar-thumb{
+background:#444;
+border-radius:20px;
+}
+
+.cryptoPopupItem{
+display:flex;
+align-items:center;
+gap:12px;
+padding:8px 12px;
+cursor:pointer;
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.cryptoPopupItem img{
+width:28px;
+height:28px;
+border-radius:50%;
+}
+
+.cryptoPopupItem span{
+font-size:14px;
+font-weight:600;
+color:#fff;
+}
+
+.cryptoPopupItem:hover{
+background:#1a1a1a;
+}
+
+.cryptoOverlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+display:none;
+z-index:99998;
+}
+
+#crypto{
+display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<button class="themeBtn"
+onclick="toggleMenu()">
+☰
+</button>
+
+<div class="topLogo">
+<img
+src="logo-tvola.png"
+alt="T-VOLA EXCHANGE">
+</div>
+
+<button class="themeBtn"
+onclick="toggleAdmin()">
+🛠️
+</button>
+
+</div>
+
+<div class="adminPage"
+id="oldAdminPage">
+
+<h2>MENU</h2>
+
+<div class="tip">
+
+<div onclick="setDarkMode()"
+id="darkModeBtn">
+🌙 Mode sombre
+</div>
+
+<div onclick="setLightMode()"
+id="lightModeBtn">
+☀️ Mode clair
+</div>
+
+<br>
+
+<div>
+🌐 Langue
+</div>
+
+<div style="margin-left:20px;margin-top:10px;">
+
+<div onclick="setLanguage('fr')">
+🇫🇷 Français
+</div>
+
+<br>
+
+<div onclick="setLanguage('mg')">
+🇲🇬 Malagasy
+</div>
+
+</div>
+
+<br>
+
+<div onclick="showAbout()">
+ℹ️ À propos
+</div>
+
+<br>
+
+<div onclick="toggleMenu()">
+❌ Fermer
+</div>
+
+</div>
+
+</div>
+
+
+<div class="switch">
+
+<button id="buyBtn"
+class="active"
+onclick="setType('achat')">
+Acheter
+</button>
+
+
+<button id="sellBtn"
+onclick="setType('vente')">
+Vendre
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="walletSection">
+
+<div class="walletTitle">
+
+<div id="walletTitleLeft">
+
+<img src="images/wallet.png"
+class="walletIcon">
+
+Portefeuilles
+
+</div>
+
+<div id="walletTitleRight">
+
+</div>
+
+</div>
+
+<div id="walletContainer">
+
+</div>
+
+</div>
+
+<div class="box">
+
+<div class="row">
+
+<select id="crypto"
+onchange="updateNetworks();saveCalculator()">
+
+<option>USDT</option>
+<option>USDC</option>
+<option>BTC</option>
+<option>ETH</option>
+<option>BNB</option>
+<option>SOL</option>
+<option>XRP</option>
+<option>DOGE</option>
+<option>TRX</option>
+<option>LTC</option>
+<option>TON</option>
+<option>BCH</option>
+<option>POL</option>
+
+</select>
+
+<div id="cryptoSelector"
+onclick="openCryptoPopup()"
+style="
+width:90px;
+height:58px;
+background:#1a1a1a;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 12px;
+cursor:pointer;
+">
+
+<div style="display:flex;align-items:center;gap:8px;">
+
+<img
+id="selectedCryptoLogo"
+src="img/dropdown/usdt.png"
+style="
+width:15px;
+height:15px;
+border-radius:50%;
+">
+
+<span
+id="selectedCryptoText"
+style="
+font-size:14px;
+font-weight:600;
+color:white;
+">
+USDT
+</span>
+
+</div>
+
+<span style="
+color:#8a8a8a;
+font-size:20px;
+font-weight:300;
+margin-left:4px;
+">
+▾
+</span>
+
+</div>
+
+<input type="number"
+id="cryptoInput"
+placeholder="0"
+oninput="
+activeInput='crypto';
+startCalculation();
+saveCalculator();
+">
+
+<button class="copyBtn"
+onclick="copyValue('cryptoInput')">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<rect
+x="9"
+y="9"
+width="10"
+height="10"
+rx="1"
+stroke-width="2"/>
+
+<path
+d="M6 15V5H16"
+stroke-width="2"
+stroke-linecap="round"/>
+
+</svg>
+
+</button>
+
+</div>
+
+</div>
+
+<div id="transferOptions" class="transferOptions">
+
+<button id="interneBtn"
+class="transferBtn active"
+onclick="setTransferMode('interne')">
+📩 Interne
+</button>
+
+<button id="reseauBtn"
+class="transferBtn"
+onclick="setTransferMode('reseau')">
+🌐 Réseau
+</button>
+
+<div id="networkDropdown">
+
+<button
+id="selectedNetwork"
+onclick="toggleNetworkList()">
+<span id="selectedNetworkText">TRC20</span>
+<span>▾</span>
+</button>
+
+<div id="networkList"></div>
+
+</div>
+
+<select id="networkSelect"
+class="networkSelect"
+onchange="startCalculation();saveCalculator()">
+
+<option>TRC20</option>
+<option>BEP20</option>
+<option>POL</option>
+<option>ERC20</option>
+
+</select>
+
+</div>
+
+<div class="rate"
+id="rateText">
+1 USDT = 4350 Ar
+</div>
+
+<div class="box">
+
+<div class="row">
+
+<div id="baseCurrencySelector"
+onclick="toggleBaseCurrencyList()">
+
+<img
+id="selectedBaseLogo"
+src="images/ar-logo.png">
+
+<span id="selectedBaseText">
+Ar
+</span>
+
+<span class="baseArrow">▼</span>
+
+</div>
+
+<div id="baseCurrencyList">
+
+<div
+class="baseCurrencyItem"
+onclick="selectBaseCurrency('Ar')">
+
+<img src="images/ar-logo.png">
+
+<span>Ariary (MGA)</span>
+
+</div>
+
+<div class="baseCurrencyDivider">
+<span class="swapCircle">↓↑</span>
+</div>
+
+<div
+class="baseCurrencyItem"
+onclick="selectBaseCurrency('USDT')">
+
+<img src="images/usdt-logo.png">
+
+<span>Tether (USDT)</span>
+
+</div>
+
+</div>
+
+<input type="number"
+id="mgaInput"
+placeholder="100000"
+oninput="
+activeInput='mga';
+startCalculation();
+saveCalculator();
+">
+
+<button class="copyBtn"
+onclick="copyValue('mgaInput')">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<rect
+x="9"
+y="9"
+width="10"
+height="10"
+rx="1"
+stroke-width="2"/>
+
+<path
+d="M6 15V5H16"
+stroke-width="2"
+stroke-linecap="round"/>
+
+</svg>
+
+</button>
+
+</div>
+
+</div>
+
+<div class="fees">
+
+<div id="feeUsdt">
+Frais : 0
+</div>
+
+<div id="feeMga">
+≈ 0 Ar
+</div>
+
+</div>
+
+<button class="calcBtn"
+onclick="startCalculation()">
+CALCULER
+</button>
+
+<div class="ussdBox">
+
+<div class="ussdTop">
+
+<span class="ussdLabel">
+N°
+</span>
+
+<input
+type="tel"
+id="mobileNumber"
+placeholder="034 xx xxx xxx"
+oninput="updateUSSD()">
+
+<button
+class="pasteBtn"
+onclick="pasteNumber()">
+
+<svg
+viewBox="0 0 24 24"
+fill="none">
+
+<path
+d="M9 3H15C15.55 3 16 3.45 16 4V5H18C19.1 5 20 5.9 20 7V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V7C4 5.9 4.9 5 6 5H8V4C8 3.45 8.45 3 9 3Z"
+
+stroke="currentColor"
+stroke-width="1.8"
+stroke-linejoin="round"/>
+
+<circle
+cx="12"
+cy="5"
+r="1.4"
+fill="currentColor"/>
+
+</svg>
+
+</button>
+
+</div>
+
+<div class="ussdBottom">
+
+<div
+id="ussdCode"
+class="ussdCode">
+
+USSD
+
+</div>
+
+<a
+id="callBtn"
+class="callBtn">
+
+📞
+
+</a>
+
+</div>
+
+</div>
+
+<button class="adminBtn"
+onclick="
+document.getElementById('adminPage').style.display=
+document.getElementById('adminPage').style.display==='block'
+?'none':'block';
+">
+  
+ <img src="cours.png" class="btnIcon">
+COURS ACTUEL✎
+</button>
+
+<div class="facture"
+id="facture">
+
+<div class="factureGlowTop"></div>
+<div class="factureGlowBottom"></div>
+<div class="mapBackground"></div>
+
+<!-- TITLE -->
+
+<div class="invoiceTitle"
+id="invoiceTitle">
+DÉTAILS DE TRANSACTION
+</div>
+
+<div class="invoiceSub"
+id="invoiceSub">
+MERCI POUR VOTRE CONFIANCE
+</div>
+
+<!-- HEADER -->
+
+<div class="transactionHeaderBox">
+
+<div class="transactionLeft">
+
+<img id="tvolaLogoFacture"
+src="img/tvola3d.png"
+class="logoMini">
+
+<div class="transactionText">
+
+<div class="smallType">
+TYPE DE TRANSACTION:
+</div>
+
+<div class="mainTransaction"
+id="factureTitle">
+ACHAT USDT
+</div>
+
+<div id="factureWalletInfo">
+
+<img
+src="images/wallet-green.png"
+id="factureWalletIcon">
+
+<span id="factureWalletName">
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="cryptoCircle">
+
+<img
+id="cryptoLogoFacture"
+src="img/crypto/usdt.png"
+style="
+width:35px;
+height:35px;
+object-fit:contain;
+">
+
+</div>
+
+</div>
+
+<!-- DETAILS -->
+
+<div class="detailsContainer">
+
+<div class="detailItem">
+
+<div class="detailLabel" id="amountLabel">
+💰 Montant
+</div>
+
+<div class="detailValue"
+id="detail1">
+Montant : 0 USDT
+</div>
+
+</div>
+
+<div class="detailItem">
+
+<div class="detailLabel">
+📊 Cours obtenu ↑↓
+</div>
+
+<div class="detailValue"
+id="detail2">
+Cours : 0 Ar
+</div>
+
+</div>
+
+<div class="detailItem">
+
+<div class="detailLabel" id="mgaLabel">
+💵 Montant (MGA)
+</div>
+
+<div class="detailValue"
+id="detail3">
+MGA : 0 Ar
+</div>
+
+</div>
+
+<div class="detailItem">
+
+<div class="detailLabel"
+id="networkFeeLabel">
+🔗 Frais Réseau
+</div>
+
+<div class="detailValue"
+id="detail4">
+Frais : 0
+</div>
+
+</div>
+
+<div class="detailItem">
+
+<div class="detailLabel">
+🔒 Frais (MGA)
+</div>
+
+<div class="detailValue">
+0 Ar
+</div>
+
+</div>
+
+</div>
+
+<!-- CONTACTS -->
+
+<div class="factureWalletsWrapper">
+
+<span class="walletArrow">
+◀ 
+</span>
+
+<div id="factureWallets"
+class="factureWallets">
+</div>
+
+<span class="walletArrow">
+▶
+</span>
+
+</div>
+
+<div class="contactContainer">
+
+<div class="contactBox">
+
+<img src="facebook.png"
+class="socialIcon">
+
+<div class="contactText">
+T-Vola & T-Vola Bot
+</div>
+
+</div>
+
+<div class="contactBox">
+
+<img src="whatsapp.png"
+class="socialIcon">
+
+<div class="contactText">
+7j/7 (7h00 à 20h00)
+</div>
+
+</div>
+
+<div class="contactBox">
+
+<img src="web.png"
+class="socialIcon">
+
+<div class="contactText">
+https://tvola.momo-pay.me
+</div>
+
+</div>
+
+<div class="contactBox">
+
+<img src="email.png"
+class="socialIcon">
+
+<div class="contactText">
+tvolaexchange@gmail.com
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="downloadBtn"
+onclick="downloadFacture()">
+  
+  <img src="downloadicon.png" class="btnIconWhite">
+Télécharger JPG
+</button>
+
+<div class="live">
+
+<h3>PRIX LIVE</h3>
+
+<div id="livePrices"></div>
+
+</div>
+
+</div>
+
+<div class="adminPage"
+id="adminPage"
+style="display:none;">
+
+<h2>COURS</h2>
+
+<label>Vente Min</label>
+<input type="number"
+id="venteMin"
+value="3900">
+
+<label>Vente Max</label>
+<input type="number"
+id="venteMax"
+value="3950">
+
+<label>Achat Min</label>
+<input type="number"
+id="achatMin"
+value="4350">
+
+<label>Achat Max</label>
+<input type="number"
+id="achatMax"
+value="4400">
+
+<label>Réduction Max USDT</label>
+<input type="number"
+id="maxUsdt"
+value="50">
+
+<label>Frais SWAP (%)</label>
+<input type="number"
+id="ventePercent"
+value="0">
+
+<button class="adminBtn"
+onclick="saveSettings()">
+ENREGISTRER
+</button>
+
+<div class="tip">
+
+✅ Conseil :
+
+• Appuyez sur “ENREGISTRER” après modification des cours.
+
+• Les paramètres restent sauvegardés même après actualisation.
+
+• Le frais réseau s'applique uniquement à l'ACHAT.
+
+• Le frais SWAP (%) reste invisible côté client.
+
+</div>
+
+</div>
+
+<script>
+  
+const cryptoLogos = {
+
+USDT:"img/crypto/usdt.png",
+USDC:"img/crypto/usdc.png",
+BTC:"img/crypto/btc.png",
+ETH:"img/crypto/eth.png",
+BNB:"img/crypto/bnb.png",
+SOL:"img/crypto/sol.png",
+XRP:"img/crypto/xrp.png",
+DOGE:"img/crypto/doge.png",
+TRX:"img/crypto/trx.png",
+LTC:"img/crypto/ltc.png",
+TON:"img/crypto/ton.png",
+BCH:"img/crypto/bch.png",
+POL:"img/crypto/pol.png"
+
+};
+
+let transactionType="achat";
+let activeInput="crypto";
+let language="fr";
+let baseCurrency = "Ar";
+
+function toggleMenu(){
+
+let panel=
+document.getElementById("oldAdminPage");
+
+panel.style.display=
+panel.style.display==="block"
+?
+"none"
+:
+"block";
+
+}
+
+function toggleAdmin(){
+
+let panel=
+document.getElementById("newAdminPanel");
+
+panel.style.display=
+panel.style.display==="block"
+?
+"none"
+:
+"block";
+
+loadNetworkFees();
+
+}
+
+function setType(type){
+
+transactionType=type;
+
+document.getElementById("buyBtn")
+.classList.remove("active");
+
+document.getElementById("sellBtn")
+.classList.remove("active");
+
+if(type==="achat"){
+
+document.getElementById("buyBtn")
+.classList.add("active");
+
+document.getElementById("transferOptions")
+.style.display="flex";
+
+}else{
+
+document.getElementById("sellBtn")
+.classList.add("active");
+
+document.getElementById("transferOptions")
+.style.display="flex";
+
+}
+
+saveCalculator();
+
+startCalculation();
+
+}
+
+function copyValue(id){
+
+let value=
+document.getElementById(id).value;
+
+navigator.clipboard.writeText(value);
+
+}
+
+function progressiveRate(
+amount,
+min,
+max
+){
+
+let maxUsdt=
+parseFloat(
+document.getElementById("maxUsdt").value
+);
+
+let rate;
+
+if(transactionType==="vente"){
+
+rate=
+min+
+((amount/maxUsdt)*(max-min));
+
+if(rate>max){
+rate=max;
+}
+
+}else{
+
+rate=
+max-
+((amount/maxUsdt)*(max-min));
+
+if(rate<min){
+rate=min;
+}
+
+}
+
+return Math.round(rate);
+
+}
+
+async function getPrice(crypto){
+
+if(
+crypto==="USDT" ||
+crypto==="USDC"
+){
+
+return {
+price:1,
+change:0
+};
+
+}
+
+/* WebSocket priorité */
+
+if(livePrices[crypto]){
+
+return {
+price:livePrices[crypto],
+change:
+liveChanges[crypto] || 0
+};
+
+}
+
+/* Fallback Binance REST */
+
+try{
+
+let response=
+await fetch(
+"https://api.binance.com/api/v3/ticker/24hr?symbol="+
+crypto+
+"USDT"
+);
+
+let data=
+await response.json();
+
+return {
+
+price:
+parseFloat(data.lastPrice),
+
+change:
+parseFloat(data.priceChangePercent)
+
+};
+
+}catch{
+
+return null;
+
+}
+
+}
+
+async function pasteNumber(){
+
+try{
+
+const text =
+await navigator.clipboard.readText();
+
+document.getElementById(
+"mobileNumber"
+).value = text;
+
+updateUSSD();
+
+}catch{}
+
+}
+
+function updateUSSD(){
+
+const phone =
+document.getElementById(
+"mobileNumber"
+).value
+.replace(/\s/g,'');
+
+const amount =
+document.getElementById(
+"mgaInput"
+).value
+.replace(/,/g,'');
+
+let ussd="";
+
+if(
+phone.startsWith("034")
+||
+phone.startsWith("038")
+){
+
+ussd=
+`#111*1*2*${phone}*${amount}*2*555#`;
+
+}
+
+else if(
+phone.startsWith("032")
+||
+phone.startsWith("037")
+){
+
+ussd=
+`#144*1*1*${phone}*${phone}*${amount}*2#`;
+
+}
+
+document.getElementById(
+"ussdCode"
+).innerText =
+ussd;
+
+document.getElementById(
+"callBtn"
+).href =
+"tel:" +
+encodeURIComponent(ussd);
+
+}
+
+async function startCalculation(){
+
+let crypto=
+document.getElementById("crypto").value;
+
+let cryptoInput=
+document.getElementById("cryptoInput");
+
+let mgaInput=
+document.getElementById("mgaInput");
+
+let cryptoAmount=
+parseFloat(cryptoInput.value);
+
+let mga=
+parseFloat(mgaInput.value);
+
+let price;
+
+if(
+baseCurrency==="USDT"
+&&
+(
+crypto==="USDT"
+||
+crypto==="USDC"
+)
+){
+
+price = 1;
+
+}else{
+
+let data =
+await getPrice(crypto);
+
+if(data===null) return;
+
+price = data.price;
+
+}
+
+let venteMin=
+parseFloat(
+document.getElementById("venteMin").value
+);
+
+let venteMax=
+parseFloat(
+document.getElementById("venteMax").value
+);
+
+let achatMin=
+parseFloat(
+document.getElementById("achatMin").value
+);
+
+let achatMax=
+parseFloat(
+document.getElementById("achatMax").value
+);
+
+let frais = 0;
+
+if(
+transactionType==="achat"
+&&
+transferMode==="reseau"
+&&
+baseCurrency==="Ar"
+){
+
+frais = getNetworkFee();
+
+}
+
+let percent=
+parseFloat(
+document.getElementById("ventePercent").value
+);
+
+if(
+activeInput==="crypto"
+&&
+!isNaN(cryptoAmount)
+){
+
+let usdt=
+cryptoAmount*price;
+
+let taux;
+
+if(transactionType==="vente"){
+
+taux=
+progressiveRate(
+usdt,
+venteMin,
+venteMax
+);
+
+}else{
+
+taux=
+progressiveRate(
+usdt,
+achatMin,
+achatMax
+);
+
+}
+
+let totalMga=
+usdt*taux;
+
+if(
+baseCurrency==="Ar"
+&&
+crypto!=="USDT"
+&&
+crypto!=="USDC"
+){
+
+let fraisPercent=
+totalMga*
+(percent/100);
+
+if(transactionType==="vente"){
+
+totalMga -= fraisPercent;
+
+}else{
+
+totalMga += fraisPercent;
+
+}
+
+}
+
+if(transactionType==="achat"){
+
+totalMga +=
+(frais*price)*taux;
+
+}
+
+if(baseCurrency==="Ar"){
+
+mgaInput.value =
+Math.round(totalMga);
+
+}else{
+
+mgaInput.value =
+(totalMga / taux).toFixed(2);
+
+}
+
+updateUI(
+crypto,
+cryptoAmount,
+totalMga,
+price,
+taux,
+frais
+);
+
+}
+
+else if(
+activeInput==="mga"
+&&
+!isNaN(mga)
+){
+
+let approxUsdt =
+baseCurrency==="USDT"
+?
+mga
+:
+mga/4400;
+
+let taux;
+
+if(baseCurrency==="USDT"){
+
+    taux = 1;
+
+}else{
+
+    if(transactionType==="vente"){
+
+        taux = progressiveRate(
+            approxUsdt,
+            venteMin,
+            venteMax
+        );
+
+    }else{
+
+        taux = progressiveRate(
+            approxUsdt,
+            achatMin,
+            achatMax
+        );
+
+    }
+
+}
+
+let totalMga = mga;
+
+let usdt;
+
+if(baseCurrency==="Ar"){
+
+usdt = totalMga / taux;
+
+}else{
+
+usdt = totalMga;
+
+}
+
+let cryptoResult =
+usdt / price;
+
+if(
+baseCurrency==="Ar"
+&&
+crypto!=="USDT"
+&&
+crypto!=="USDC"
+){
+
+if(transactionType==="vente"){
+
+cryptoResult +=
+cryptoResult*
+(percent/100);
+
+}else{
+
+cryptoResult -=
+cryptoResult*
+(percent/100);
+
+}
+
+}
+
+if(transactionType==="achat"){
+
+cryptoResult -= frais;
+
+}
+
+if(cryptoResult<0){
+
+cryptoResult=0;
+
+}
+
+cryptoInput.value=
+cryptoResult.toFixed(8);
+
+updateUI(
+crypto,
+cryptoResult,
+mga,
+price,
+taux,
+frais
+);
+
+}
+
+updateUSSD();
+
+saveCalculator();
+
+}
+
+function updateUI(
+crypto,
+cryptoAmount,
+mga,
+price,
+taux,
+frais
+){
+
+let coursCrypto=
+price*taux;
+
+let tauxAuto;
+
+if(coursCrypto>=1000){
+
+tauxAuto=
+Math.round(coursCrypto)
+.toLocaleString();
+
+}else if(coursCrypto>=1){
+
+tauxAuto=
+coursCrypto.toFixed(2);
+
+}else{
+
+tauxAuto=
+coursCrypto.toFixed(4);
+
+}
+
+if(baseCurrency==="Ar"){
+
+document.getElementById("rateText")
+.innerHTML=
+"1 "+
+crypto+
+" = "+
+tauxAuto+
+" Ar";
+
+}else{
+
+document.getElementById("rateText")
+.innerHTML=
+"1 "+
+crypto+
+" = "+
+price.toFixed(2)+
+" USDT";
+
+}
+
+if(transactionType==="achat"){
+
+document.getElementById("feeUsdt")
+.innerHTML=
+"Frais : "+
+frais+
+" "+
+crypto;
+
+document.getElementById("feeMga")
+.innerHTML=
+"≈ "+
+Math.round(
+frais*coursCrypto
+).toLocaleString()+
+" Ar";
+
+}else{
+
+document.getElementById("feeUsdt")
+.innerHTML=
+"Frais : 0";
+
+document.getElementById("feeMga")
+.innerHTML=
+"≈ 0 Ar";
+
+}
+
+if(language==="mg"){
+
+document.getElementById("factureTitle")
+.innerHTML=
+transactionType==="achat"
+?
+"HIVIDY "+crypto
+:
+"HIVAROTRA "+crypto;
+
+}else{
+
+document.getElementById("factureTitle")
+.innerHTML=
+transactionType==="achat"
+?
+"DEPOT "+crypto
+:
+"RETRAIT "+crypto;
+
+}
+
+document.getElementById(
+"cryptoLogoFacture"
+).src =
+cryptoLogos[crypto];
+
+if(language==="mg"){
+
+if(transactionType==="achat"){
+
+document.getElementById("amountLabel").innerHTML =
+"📥 Montant ho voaray";
+
+document.getElementById("mgaLabel").innerHTML =
+"💵 Montant Ariary alefanao";
+
+}else{
+
+document.getElementById("amountLabel").innerHTML =
+"📤 Montant alefanao";
+
+document.getElementById("mgaLabel").innerHTML =
+"💰 Montant Ariary ho voarainao";
+
+}
+
+}else{
+
+if(transactionType==="achat"){
+
+document.getElementById("amountLabel").innerHTML =
+"📥 Montant à recevoir (ou reçu)";
+
+document.getElementById("mgaLabel").innerHTML =
+"💵 Montant Ariary à envoyer (ou envoyé)";
+
+}else{
+
+document.getElementById("amountLabel").innerHTML =
+"📤 Montant à envoyer (ou envoyé)";
+
+document.getElementById("mgaLabel").innerHTML =
+"💰 Montant Ariary à recevoir (ou reçu)";
+
+}
+
+}
+
+if(language==="mg"){
+
+document.getElementById("invoiceTitle")
+.innerHTML =
+"NY ANTSIPIRIHAN'NY TRANSACTION";
+
+document.getElementById("invoiceSub")
+.innerHTML =
+"Mankasitraka hatrany amin'ny fahatokisana";
+
+document.querySelector(".smallType")
+.innerHTML =
+"NY TRANSACTION TIANA HATAO";
+
+document.getElementById("detail2")
+.previousElementSibling.innerHTML =
+"📊 Cours azo amin'io montant io";
+
+}else{
+
+document.getElementById("invoiceTitle")
+.innerHTML =
+"DÉTAILS DE TRANSACTION";
+
+document.getElementById("invoiceSub")
+.innerHTML =
+"MERCI POUR VOTRE CONFIANCE";
+
+document.querySelector(".smallType")
+.innerHTML =
+"TYPE DE TRANSACTION :";
+
+document.getElementById("detail2")
+.previousElementSibling.innerHTML =
+"📊 Cours obtenu ↑↓";
+
+}
+
+document.getElementById("detail1")
+.innerHTML=
+cryptoAmount.toFixed(8)+
+" "+crypto;
+
+document.getElementById("detail2")
+.innerHTML=
+tauxAuto+
+" Ar";
+
+if(baseCurrency==="Ar"){
+
+document.getElementById("detail3")
+.innerHTML =
+Math.round(mga).toLocaleString()
++ " Ar";
+
+}else{
+
+document.getElementById("detail3")
+.innerHTML =
+parseFloat(mga).toFixed(2)
++ " USDT";
+
+}
+
+let networkLabel;
+
+if(transactionType==="achat"){
+
+    if(transferMode==="reseau"){
+
+        networkLabel =
+        "🔗 Frais de réseau (" +
+        document.getElementById("networkSelect").value +
+        ")";
+
+    }else{
+
+        networkLabel =
+        "🔗 Frais de réseau";
+
+    }
+
+}else{
+
+if(language==="mg"){
+
+networkLabel =
+"🔗 Frais de réseau (ianao no miantoka)";
+
+}else{
+
+networkLabel =
+"🔗 Frais de réseau (à votre charge)";
+
+}
+
+}
+
+document.getElementById("networkFeeLabel")
+.innerHTML = networkLabel;
+
+document.getElementById("detail4")
+.innerHTML=
+transactionType==="achat"
+?
+(
+transferMode==="interne"
+?
+"0"
+:
+frais + " " + crypto
+)
+:
+"···";
+
+}
+
+const livePrices = {};
+const liveChanges = {};
+const liveSockets = {};
+
+function updateLiveRow(
+crypto,
+price,
+change
+){
+
+let existing=
+document.getElementById(
+"live-"+crypto
+);
+
+let content=
+`
+<span>${crypto}</span>
+
+<span class="${
+change>=0
+?
+"green"
+:
+"red"
+}">
+$${price.toFixed(4)}
+(${change.toFixed(2)}%)
+</span>
+`;
+
+if(existing){
+
+existing.innerHTML=
+content;
+
+}else{
+
+document.getElementById(
+"livePrices"
+).innerHTML+=
+`
+<div
+class="liveItem"
+id="live-${crypto}">
+${content}
+</div>
+`;
+
+}
+
+}
+
+function startLiveTicker(symbol){
+
+if(liveSockets[symbol])
+return;
+
+const ws=
+new WebSocket(
+
+`wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}usdt@ticker`
+
+);
+
+liveSockets[symbol]=ws;
+
+ws.onmessage=(event)=>{
+
+const data=
+JSON.parse(event.data);
+
+const price=
+parseFloat(data.c);
+
+const change=
+parseFloat(data.P);
+
+livePrices[symbol]=price;
+liveChanges[symbol]=change;
+
+updateLiveRow(
+symbol,
+price,
+change
+);
+
+};
+
+ws.onclose=()=>{
+
+delete liveSockets[symbol];
+
+setTimeout(()=>{
+
+startLiveTicker(symbol);
+
+},3000);
+
+};
+
+ws.onerror=()=>{
+
+ws.close();
+
+};
+
+}
+
+function saveSettings(){
+
+localStorage.setItem(
+"venteMin",
+document.getElementById("venteMin").value
+);
+
+localStorage.setItem(
+"venteMax",
+document.getElementById("venteMax").value
+);
+
+localStorage.setItem(
+"achatMin",
+document.getElementById("achatMin").value
+);
+
+localStorage.setItem(
+"achatMax",
+document.getElementById("achatMax").value
+);
+
+localStorage.setItem(
+"maxUsdt",
+document.getElementById("maxUsdt").value
+);
+
+localStorage.setItem(
+"ventePercent",
+document.getElementById("ventePercent").value
+);
+
+alert("Paramètres enregistrés");
+
+}
+
+function loadSettings(){
+
+if(localStorage.getItem("venteMin")){
+
+document.getElementById("venteMin").value=
+localStorage.getItem("venteMin");
+
+}
+
+if(localStorage.getItem("venteMax")){
+
+document.getElementById("venteMax").value=
+localStorage.getItem("venteMax");
+
+}
+
+if(localStorage.getItem("achatMin")){
+
+document.getElementById("achatMin").value=
+localStorage.getItem("achatMin");
+
+}
+
+if(localStorage.getItem("achatMax")){
+
+document.getElementById("achatMax").value=
+localStorage.getItem("achatMax");
+
+}
+
+if(localStorage.getItem("maxUsdt")){
+
+document.getElementById("maxUsdt").value=
+localStorage.getItem("maxUsdt");
+
+}
+
+
+if(localStorage.getItem("ventePercent")){
+
+document.getElementById("ventePercent").value=
+localStorage.getItem("ventePercent");
+
+}
+
+}
+
+function saveCalculator(){
+
+localStorage.setItem(
+"savedCrypto",
+document.getElementById("crypto").value
+);
+
+localStorage.setItem(
+"savedCryptoInput",
+document.getElementById("cryptoInput").value
+);
+
+localStorage.setItem(
+"savedMgaInput",
+document.getElementById("mgaInput").value
+);
+
+localStorage.setItem(
+"savedType",
+transactionType
+);
+
+localStorage.setItem(
+"savedActiveInput",
+activeInput
+);
+
+localStorage.setItem(
+"savedBaseCurrency",
+baseCurrency
+);
+
+localStorage.setItem(
+"savedNetwork",
+document.getElementById(
+"networkSelect"
+).value
+);
+
+}
+
+function loadCalculator(){
+
+if(localStorage.getItem("savedCrypto")){
+
+let savedCrypto =
+localStorage.getItem("savedCrypto");
+
+document.getElementById("crypto").value =
+savedCrypto;
+
+/* UPDATE DROPDOWN PREMIUM */
+
+document.getElementById(
+"selectedCryptoText"
+).innerText =
+savedCrypto;
+
+document.getElementById(
+"selectedCryptoLogo"
+).src =
+"img/dropdown/" +
+savedCrypto.toLowerCase() +
+".png";
+
+}
+
+if(localStorage.getItem("savedCryptoInput")){
+
+document.getElementById("cryptoInput").value=
+localStorage.getItem("savedCryptoInput");
+
+}
+
+if(localStorage.getItem("savedMgaInput")){
+
+document.getElementById("mgaInput").value=
+localStorage.getItem("savedMgaInput");
+
+}
+
+if(localStorage.getItem("savedType")){
+
+setType(
+localStorage.getItem("savedType")
+);
+
+}
+
+if(localStorage.getItem("savedActiveInput")){
+
+activeInput=
+localStorage.getItem("savedActiveInput");
+
+}
+
+if(localStorage.getItem("savedBaseCurrency")){
+
+baseCurrency =
+localStorage.getItem("savedBaseCurrency");
+
+}
+
+updateNetworks();
+
+if(localStorage.getItem("savedNetwork")){
+
+document.getElementById(
+"networkSelect"
+).value =
+localStorage.getItem(
+"savedNetwork"
+);
+
+buildNetworkDropdown();
+
+document.getElementById(
+"selectedNetworkText"
+).innerText =
+localStorage.getItem(
+"savedNetwork"
+);
+
+}
+
+}
+
+[
+"BTC",
+"ETH",
+"BNB",
+"SOL",
+"XRP",
+"DOGE",
+"TRX",
+"LTC",
+"TON",
+"BCH",
+"POL"
+].forEach(
+startLiveTicker
+);
+
+loadSettings();
+
+loadCalculator();
+
+setTimeout(()=>{
+
+startCalculation();
+
+},1000);
+
+function downloadFacture(){
+
+html2canvas(
+document.getElementById("facture"),
+{
+backgroundColor:null,
+scale:2.5
+}
+).then(canvas=>{
+
+let image=
+canvas.toDataURL(
+"image/jpeg",
+1.0
+);
+
+let link=
+document.createElement("a");
+
+link.href=image;
+
+link.download=
+"facture-tv-exchange.jpg";
+
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+
+});
+
+}
+
+let transferMode = "interne";
+
+let selectedWallet = "";
+
+let currentWallets = [];
+
+function setTransferMode(mode){
+
+transferMode = mode;
+
+document
+.getElementById("interneBtn")
+.classList.remove("active");
+
+document
+.getElementById("reseauBtn")
+.classList.remove("active");
+
+if(mode==="interne"){
+
+document
+.getElementById("interneBtn")
+.classList.add("active");
+
+document
+.getElementById("networkDropdown")
+.style.display="none";
+
+}else{
+
+document
+.getElementById("reseauBtn")
+.classList.add("active");
+
+document
+.getElementById("networkDropdown")
+.style.display="flex";
+
+buildNetworkDropdown();
+
+}
+
+startCalculation();
+
+saveCalculator();
+
+renderWallets();
+
+renderFactureWallets();
+
+}
+
+function renderFactureWallets(){
+
+const container =
+document.getElementById(
+"factureWallets"
+);
+
+if(!container) return;
+
+container.innerHTML = "";
+
+let wallets = [];
+
+if(transferMode==="interne"){
+
+wallets = [
+
+{name:"Binance",logo:"img/binance.png"},
+{name:"OKX",logo:"img/okx.png"},
+{name:"MEXC",logo:"img/mexc.png"},
+{name:"BingX",logo:"img/bingx.png"},
+{name:"Bitget",logo:"img/bitget.png"},
+{name:"RedotPay",logo:"img/redotpay.png"},
+{name:"FaucetPay",logo:"img/faucetpay.png"},
+{name:"CWallet",logo:"img/cwallet.png"}
+
+];
+
+}else{
+
+wallets = [
+
+{name:"Trust Wallet",logo:"img/trustwallet.png"},
+{name:"SafePal",logo:"img/safepal.png"},
+{name:"MetaMask",logo:"img/metamask.png"},
+{name:"BitKeep",logo:"img/bitkeep.png"},
+{name:"Tonkeeper",logo:"img/tonkeeper.png"},
+{name:"OKX Web3",logo:"img/okxw.png"},
+{name:"Bitget Web3",logo:"img/bitgetw.png"},
+{name:"JM",logo:"img/jm.png"},
+{name:"Deriv",logo:"img/deriv.png"},
+{name:"Exness",logo:"img/exness.png"}
+
+];
+
+}
+
+wallets.forEach(wallet=>{
+
+const div =
+document.createElement("div");
+
+div.className =
+"factureWalletItem";
+
+if(
+wallet.name===selectedWallet
+){
+
+div.classList.add("active");
+
+div.innerHTML =
+`
+<img src="${wallet.logo}">
+`;
+
+}else{
+
+div.innerHTML =
+`
+<img src="${wallet.logo}">
+`;
+
+}
+
+container.appendChild(div);
+
+});
+
+}
+
+function selectWallet(name, element){
+
+selectedWallet = name;
+
+document
+.querySelectorAll(".walletBtn")
+.forEach(btn =>
+btn.classList.remove("active"));
+
+element.classList.add("active");
+
+document.getElementById(
+"walletTitleRight"
+).innerHTML =
+
+name +
+
+' <img src="images/check-green.png" class="checkIcon">';
+
+document.getElementById( 
+"factureWalletInfo"
+).style.display="flex";
+
+document.getElementById(
+"factureWalletName"
+).innerText = name;
+
+renderFactureWallets();
+
+}
+
+function renderWallets(){
+
+const container =
+document.getElementById(
+"walletContainer"
+);
+
+container.innerHTML = "";
+
+let wallets = [];
+
+currentWallets = wallets;
+
+if(transferMode==="interne"){
+
+wallets = [
+
+{name:"Binance",logo:"img/binance.png"},
+{name:"OKX",logo:"img/okx.png"},
+{name:"MEXC",logo:"img/mexc.png"},
+{name:"BingX",logo:"img/bingx.png"},
+{name:"Bitget",logo:"img/bitget.png"},
+
+{name:"RedotPay",logo:"img/redotpay.png"},
+{name:"FaucetPay",logo:"img/faucetpay.png"},
+{name:"CWallet",logo:"img/cwallet.png"}
+
+];
+
+}else{
+
+wallets = [
+
+{name:"Trust Wallet",logo:"img/trustwallet.png"},
+{name:"SafePal",logo:"img/safepal.png"},
+{name:"MetaMask",logo:"img/metamask.png"},
+{name:"BitKeep",logo:"img/bitkeep.png"},
+{name:"Tonkeeper",logo:"img/tonkeeper.png"},
+
+{name:"OKX Web3",logo:"img/okxw.png"},
+{name:"Bitget Web3",logo:"img/bitgetw.png"},
+
+{name:"JM",logo:"img/jm.png"},
+{name:"Deriv",logo:"img/deriv.png"},
+{name:"Exness",logo:"img/exness.png"}
+
+];
+
+}
+
+wallets.forEach(wallet=>{
+
+const btn =
+document.createElement("div");
+
+btn.className = "walletBtn";
+
+btn.innerHTML =
+
+`
+<img src="${wallet.logo}">
+`;
+
+btn.onclick = function(){
+
+selectWallet(
+wallet.name,
+this
+);
+
+};
+
+container.appendChild(btn);
+
+});
+
+}
+
+window.onload=function(){
+  
+renderWallets();
+
+renderFactureWallets();
+  
+Object.values(cryptoLogos).forEach(src=>{
+let img=new Image();
+img.src=src;
+});
+
+updateNetworks();
+
+document.getElementById(
+"walletTitleRight"
+).innerHTML = "";
+
+document.getElementById(
+"networkDropdown"
+).style.display="none";
+
+document.getElementById("venteMin").value =
+localStorage.getItem("venteMin") || 3900;
+
+document.getElementById("venteMax").value =
+localStorage.getItem("venteMax") || 3950;
+
+document.getElementById("achatMin").value =
+localStorage.getItem("achatMin") || 4350;
+
+document.getElementById("achatMax").value =
+localStorage.getItem("achatMax") || 4400;
+
+document.getElementById("maxUsdt").value =
+localStorage.getItem("maxUsdt") || 50;
+
+document.getElementById("ventePercent").value =
+localStorage.getItem("ventePercent") || 2;
+
+};
+
+function getNetworkFee(){
+
+let crypto =
+document.getElementById("crypto")
+.value
+.toLowerCase();
+
+let network =
+document.getElementById("networkSelect")
+.value
+.toLowerCase();
+
+let savedFees =
+JSON.parse(
+localStorage.getItem("networkFees")
+|| "{}"
+);
+
+let key =
+"fee_" +
+crypto +
+"_" +
+network;
+
+return parseFloat(
+savedFees[key] || 0
+);
+
+}
+
+function updateNetworks(){
+  
+let crypto =
+document.getElementById("crypto").value;
+
+let network =
+document.getElementById("networkSelect");
+
+network.innerHTML = "";
+
+let networks = [];
+
+switch(crypto){
+
+case "USDT":
+networks =
+["BEP20","TRC20","POL","ERC20","TON"];
+break;
+
+case "USDC":
+networks =
+["BASE","POL","BEP20","SOL","ERC20"];
+break;
+
+case "BTC":
+networks =
+["BTC"];
+break;
+
+case "ETH":
+networks =
+["ERC20"];
+break;
+
+case "BNB":
+networks =
+["BEP20"];
+break;
+
+case "SOL":
+networks =
+["SOL"];
+break;
+
+case "XRP":
+networks =
+["XRP"];
+break;
+
+case "DOGE":
+networks =
+["DOGE"];
+break;
+
+case "TRX":
+networks =
+["TRC20"];
+break;
+
+case "LTC":
+networks =
+["LTC"];
+break;
+
+case "TON":
+networks =
+["TON"];
+break;
+
+case "BCH":
+networks =
+["BCH"];
+break;
+
+case "POL":
+networks =
+["POL"];
+break;
+
+}
+
+networks.forEach(n=>{
+
+let option =
+document.createElement("option");
+
+option.value=n;
+option.text=n;
+
+network.appendChild(option);
+
+});
+
+buildNetworkDropdown();
+document.getElementById(
+"selectedNetworkText"
+).innerText =
+network.value;
+
+startCalculation();
+
+}
+
+function saveNetworkFees(){
+
+const fees = {
+
+// USDT
+fee_usdt_bep20: document.getElementById("fee_usdt_bep20").value,
+fee_usdt_trc20: document.getElementById("fee_usdt_trc20").value,
+fee_usdt_pol: document.getElementById("fee_usdt_pol").value,
+fee_usdt_erc20: document.getElementById("fee_usdt_erc20").value,
+fee_usdt_ton: document.getElementById("fee_usdt_ton").value,
+
+// USDC
+fee_usdc_base: document.getElementById("fee_usdc_base").value,
+fee_usdc_pol: document.getElementById("fee_usdc_pol").value,
+fee_usdc_bep20: document.getElementById("fee_usdc_bep20").value,
+fee_usdc_sol: document.getElementById("fee_usdc_sol").value,
+fee_usdc_erc20: document.getElementById("fee_usdc_erc20").value,
+
+// BTC
+fee_btc_btc: document.getElementById("fee_btc_btc").value,
+
+// ETH
+fee_eth_erc20: document.getElementById("fee_eth_erc20").value,
+
+// BNB
+fee_bnb_bep20: document.getElementById("fee_bnb_bep20").value,
+
+// SOL
+fee_sol_sol: document.getElementById("fee_sol_sol").value,
+
+// XRP
+fee_xrp_xrp: document.getElementById("fee_xrp_xrp").value,
+
+// DOGE
+fee_doge_doge: document.getElementById("fee_doge_doge").value,
+
+// TRX
+fee_trx_trc20: document.getElementById("fee_trx_trc20").value,
+
+// LTC
+fee_ltc_ltc: document.getElementById("fee_ltc_ltc").value,
+
+// TON
+fee_ton_ton: document.getElementById("fee_ton_ton").value,
+
+// BCH
+fee_bch_bch: document.getElementById("fee_bch_bch").value,
+
+// POL
+fee_pol_pol: document.getElementById("fee_pol_pol").value
+
+};
+
+localStorage.setItem(
+"networkFees",
+JSON.stringify(fees)
+);
+
+localStorage.setItem(
+"venteMin",
+document.getElementById("venteMin").value
+);
+
+localStorage.setItem(
+"venteMax",
+document.getElementById("venteMax").value
+);
+
+localStorage.setItem(
+"achatMin",
+document.getElementById("achatMin").value
+);
+
+localStorage.setItem(
+"achatMax",
+document.getElementById("achatMax").value
+);
+
+localStorage.setItem(
+"maxUsdt",
+document.getElementById("maxUsdt").value
+);
+
+localStorage.setItem(
+"ventePercent",
+document.getElementById("ventePercent").value
+);
+
+alert("Frais enregistrés ✅");
+
+}
+
+document.getElementById("venteMin").value =
+localStorage.getItem("venteMin") || 3900;
+
+document.getElementById("venteMax").value =
+localStorage.getItem("venteMax") || 3950;
+
+document.getElementById("achatMin").value =
+localStorage.getItem("achatMin") || 4350;
+
+document.getElementById("achatMax").value =
+localStorage.getItem("achatMax") || 4400;
+
+document.getElementById("maxUsdt").value =
+localStorage.getItem("maxUsdt") || 50;
+
+document.getElementById("ventePercent").value =
+localStorage.getItem("ventePercent") || 1;
+
+function loadNetworkFees(){
+
+let fees =
+JSON.parse(
+localStorage.getItem("networkFees")
+|| "{}"
+);
+
+Object.keys(fees).forEach(key=>{
+
+let el =
+document.getElementById(key);
+
+if(el){
+el.value = fees[key];
+}
+
+});
+
+}
+
+if(localStorage.getItem("savedBaseCurrency")){
+
+baseCurrency =
+localStorage.getItem("savedBaseCurrency");
+
+}
+
+function toggleBaseCurrencyList(){
+
+const list =
+document.getElementById(
+"baseCurrencyList"
+);
+
+list.style.display =
+list.style.display==="block"
+?
+"none"
+:
+"block";
+
+}
+
+function selectBaseCurrency(currency){
+
+baseCurrency = currency;
+
+const text =
+document.getElementById("selectedBaseText");
+
+const logo =
+document.getElementById("selectedBaseLogo");
+
+if(currency==="Ar"){
+
+text.innerText = "Ar";
+logo.src = "images/ar-logo.png";
+
+}else{
+
+text.innerText = "USDT";
+logo.src = "images/usdt-logo.png";
+
+}
+
+document.getElementById(
+"baseCurrencyList"
+).style.display = "none";
+
+if(baseCurrency==="USDT"){
+
+document.getElementById(
+"transferOptions"
+).style.display = "none";
+
+document.getElementById(
+"feeUsdt"
+).style.display = "none";
+
+document.getElementById(
+"feeMga"
+).style.display = "none";
+
+}else{
+
+if(transactionType==="achat"){
+
+document.getElementById(
+"transferOptions"
+).style.display = "flex";
+
+document.getElementById(
+"feeUsdt"
+).style.display = "block";
+
+document.getElementById(
+"feeMga"
+).style.display = "block";
+
+}
+
+}
+
+/* TAZOMY NY CRYPTO */
+activeInput = "crypto";
+
+setTimeout(()=>{
+
+startCalculation();
+
+},1000);
+
+saveCalculator();
+
+}
+
+function toggleNetworkList(){
+
+const list =
+document.getElementById("networkList");
+
+list.style.display =
+list.style.display==="block"
+?
+"none"
+:
+"block";
+
+}
+
+function buildNetworkDropdown(){
+
+const select =
+document.getElementById("networkSelect");
+
+const list =
+document.getElementById("networkList");
+
+list.innerHTML="";
+
+Array.from(select.options)
+.forEach(option=>{
+
+const div =
+document.createElement("div");
+
+div.innerText =
+(
+select.value===option.value
+?
+"✓ "
+:
+""
+)
++
+option.value;
+
+div.onclick = ()=>{
+
+select.value =
+option.value;
+
+document.getElementById(
+"selectedNetworkText"
+).innerText =
+option.value;
+
+buildNetworkDropdown();
+
+list.style.display="none";
+
+startCalculation();
+
+saveCalculator();
+
+};
+
+list.appendChild(div);
+
+});
+
+}
+
+function openCryptoPopup(){
+
+document.getElementById("cryptoPopup").style.display="block";
+
+document.getElementById("cryptoOverlay").style.display="block";
+
+document.body.style.overflow="hidden";
+
+}
+
+function closeCryptoPopup(){
+
+document.getElementById("cryptoPopup").style.display="none";
+
+document.getElementById("cryptoOverlay").style.display="none";
+
+document.body.style.overflow="auto";
+
+}
+
+function selectCrypto(symbol,logo){
+
+document.getElementById("selectedCryptoText").innerText=symbol;
+
+document.getElementById("selectedCryptoLogo").src=logo;
+
+/* Select original crypto */
+
+const crypto =
+document.getElementById("crypto");
+
+crypto.value=symbol;
+
+/* Existing functions */
+
+updateNetworks();
+
+saveCalculator();
+
+startCalculation();
+
+/* Close popup */
+
+closeCryptoPopup();
+
+}
+
+</script>
+
+<div id="newAdminPanel">
+
+<div class="newAdminHeader">
+
+<div>
+🔨 ADMIN PANEL
+</div>
+
+<div onclick="toggleAdmin()">
+✕
+</div>
+
+</div>
+
+<div class="newAdminInfo">
+
+ℹ️ Gestion des frais réseaux
+par crypto et par réseau.
+
+</div>
+
+
+<input
+type="text"
+class="cryptoSearch"
+placeholder="🔍 Rechercher une crypto...">
+
+<div id="cryptoContainer">
+
+<h3>USDT</h3>
+
+<div class="feeRow">
+<span>BEP20</span>
+<input id="fee_usdt_bep20" type="number" value="0">
+</div>
+
+<div class="feeRow">
+<span>TRC20</span>
+<input id="fee_usdt_trc20" type="number" value="0">
+</div>
+
+<div class="feeRow">
+<span>POL</span>
+<input id="fee_usdt_pol" type="number" value="0">
+</div>
+
+<div class="feeRow">
+<span>ERC20</span>
+<input id="fee_usdt_erc20" type="number" value="0">
+</div>
+
+<div class="feeRow">
+<span>TON</span>
+<input id="fee_usdt_ton" type="number" value="0">
+</div>
+
+<h3>USDC</h3>
+
+<div class="feeRow">
+<span>BEP20</span>
+<input id="fee_usdc_bep20" type="number" value="0">
+</div>
+
+<div class="feeRow">
+<span>BASE</span>
+<input id="fee_usdc_base" type="number" value="0">
+</div>
+
+<div class="feeRow">
+<span>POL</span>
+<input id="fee_usdc_pol" type="number" value="0">
+</div>
+
+<div class="feeRow">
+<span>ERC20</span>
+<input id="fee_usdc_erc20" type="number" value="0">
+</div>
+
+<div class="feeRow">
+<span>SOL</span>
+<input id="fee_usdc_sol" type="number" value="0">
+</div>
+
+<h3>BTC</h3>
+
+<div class="feeRow">
+<span>BTC</span>
+<input id="fee_btc_btc" type="number" value="0">
+</div>
+
+<h3>ETH</h3>
+
+<div class="feeRow">
+<span>ERC20</span>
+<input id="fee_eth_erc20" type="number" value="0">
+</div>
+
+<h3>BNB</h3>
+
+<div class="feeRow">
+<span>BEP20</span>
+<input id="fee_bnb_bep20" type="number" value="0">
+</div>
+
+<h3>SOL</h3>
+
+<div class="feeRow">
+<span>SOL</span>
+<input id="fee_sol_sol" type="number" value="0">
+</div>
+
+<h3>XRP</h3>
+
+<div class="feeRow">
+<span>XRP</span>
+<input id="fee_xrp_xrp" type="number" value="0">
+</div>
+
+<h3>DOGE</h3>
+
+<div class="feeRow">
+<span>DOGE</span>
+<input id="fee_doge_doge" type="number" value="0">
+</div>
+
+<h3>TRX</h3>
+
+<div class="feeRow">
+<span>TRC20</span>
+<input id="fee_trx_trc20" type="number" value="0">
+</div>
+
+<h3>LTC</h3>
+
+<div class="feeRow">
+<span>LTC</span>
+<input id="fee_ltc_ltc" type="number" value="0">
+</div>
+
+<h3>TON</h3>
+
+<div class="feeRow">
+<span>TON</span>
+<input id="fee_ton_ton" type="number" value="0">
+</div>
+
+<h3>BCH</h3>
+
+<div class="feeRow">
+<span>BCH</span>
+<input id="fee_bch_bch" type="number" value="0">
+</div>
+
+<h3>POL</h3>
+
+<div class="feeRow">
+<span>POL</span>
+<input id="fee_pol_pol" type="number" value="0">
+</div>
+
+
+</div>
+
+<button class="saveAllBtn"
+onclick="saveNetworkFees()">
+
+💾 ENREGISTRER TOUT
+
+</button>
+
+</div>
+
+<script>
+  
+function updateThemeCheck(){
+
+const dark =
+document.getElementById("darkModeBtn");
+
+const light =
+document.getElementById("lightModeBtn");
+
+if(!dark || !light) return;
+
+dark.innerHTML =
+"🌙 Mode sombre";
+
+light.innerHTML =
+"☀️ Mode clair";
+
+if(
+document.body.classList.contains("light-mode")
+){
+
+light.innerHTML =
+"☀️ Mode clair ✓";
+
+}else{
+
+dark.innerHTML =
+"🌙 Mode sombre ✓";
+
+}
+
+}
+
+function setDarkMode(){
+
+document.body.classList.remove("light-mode");
+
+localStorage.setItem(
+"theme",
+"dark"
+);
+
+updateThemeCheck();
+
+document.getElementById(
+"oldAdminPage"
+).style.display="none";
+
+}
+
+function setLightMode(){
+
+document.body.classList.add("light-mode");
+
+localStorage.setItem(
+"theme",
+"light"
+);
+
+updateThemeCheck();
+
+document.getElementById(
+"oldAdminPage"
+).style.display="none";
+
+}
+
+function setLanguage(lang){
+
+language = lang;
+
+localStorage.setItem(
+"language",
+lang
+);
+
+startCalculation();
+
+/* AKATONA HO AZY NY MENU */
+
+document.getElementById(
+"oldAdminPage"
+).style.display = "none";
+
+}
+
+function loadLanguage(){
+
+language =
+localStorage.getItem("language")
+|| "fr";
+
+}
+
+loadTheme();
+loadLanguage();
+loadNetworkFees();
+updateThemeCheck();
+
+function showAbout(){
+
+alert(
+"T-VOLA CALCULATOR V2.2\n\n"+
+"Sehatra natao hikajiana ny fividianana sy fivarotana cryptomonnaies, Tsotra, haingana ary matihanina.\n\n"+
+"✔ Calcul montant d'Achat & Vente Crypto\n"+
+"✔ Facture Premium JPG\n"+
+"✔ Prix Live Crypto\n"+
+"✔ Gestion des frais réseaux\n"+
+"✔ Mode Clair / Sombre\n"+
+"✔ Français / Malagasy\n\n"+
+"by Raphael © 01/06/2026"
+);
+
+}
+
+</script>
+
+<div class="cryptoOverlay" id="cryptoOverlay"
+onclick="closeCryptoPopup()"></div>
+
+<div class="cryptoPopup" id="cryptoPopup">
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('USDT','img/dropdown/usdt.png')">
+<img src="img/dropdown/usdt.png">
+<span>Tether (USDT)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('USDC','img/dropdown/usdc.png')">
+<img src="img/dropdown/usdc.png">
+<span>USD Coin (USDC)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('BTC','img/dropdown/btc.png')">
+<img src="img/dropdown/btc.png">
+<span>Bitcoin (BTC)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('ETH','img/dropdown/eth.png')">
+<img src="img/dropdown/eth.png">
+<span>Ethereum (ETH)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('BNB','img/dropdown/bnb.png')">
+<img src="img/dropdown/bnb.png">
+<span>Binance Smart Chain (BNB)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('SOL','img/dropdown/sol.png')">
+<img src="img/dropdown/sol.png">
+<span>Solana (SOL)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('XRP','img/dropdown/xrp.png')">
+<img src="img/dropdown/xrp.png">
+<span>Ripple (XRP)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('DOGE','img/dropdown/doge.png')">
+<img src="img/dropdown/doge.png">
+<span>Doge Coin (DOGE)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('TRX','img/dropdown/trx.png')">
+<img src="img/dropdown/trx.png">
+<span>Tron (TRX)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('LTC','img/dropdown/ltc.png')">
+<img src="img/dropdown/ltc.png">
+<span>Litecoin (LTC)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('TON','img/dropdown/ton.png')">
+<img src="img/dropdown/ton.png">
+<span>Toncoin (TON)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('BCH','img/dropdown/bch.png')">
+<img src="img/dropdown/bch.png">
+<span>Bitcoin Cash (BCH)</span>
+</div>
+
+<div class="cryptoPopupItem"
+onclick="selectCrypto('POL','img/dropdown/pol.png')">
+<img src="img/dropdown/pol.png">
+<span>Polygon (POL)</span>
+</div>
+
+</div>
+
+</body>
+</html>
