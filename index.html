@@ -834,8 +834,8 @@ border:none;
 border-radius:22px;
 font-size:22px;
 font-weight:bold;
-background:gold;
-color:black;
+background:linear-gradient(135deg,#00ff88,#00b050);
+color:white;
 cursor:pointer;
 }
 
@@ -2655,6 +2655,27 @@ loadNetworkFees();
 function setType(type){
 
 transactionType=type;
+
+const calcBtn =
+document.querySelector(".calcBtn");
+
+if(type==="achat"){
+
+calcBtn.style.background =
+"linear-gradient(135deg,#00ff88,#00b050)";
+
+calcBtn.style.color =
+"white";
+
+}else{
+
+calcBtn.style.background =
+"linear-gradient(135deg,#ff5f5f,#d90429)";
+
+calcBtn.style.color =
+"white";
+
+}
 
 document.getElementById("buyBtn")
 .classList.remove("active");
